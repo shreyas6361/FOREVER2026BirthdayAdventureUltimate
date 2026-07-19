@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>🎂 Birthday Adventure Ultimate</title>
+
+<meta name="theme-color" content="#0b1025">
+
+<meta name="description"
+content="Premium Interactive Birthday Adventure">
+
+<!-- ==========================
+        Google Font
+=========================== -->
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<!-- ==========================
+        GSAP
+=========================== -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+
+<!-- ScrollTrigger -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
+
+<!-- Typed -->
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16"></script>
+
+<!-- Confetti -->
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+
+<!-- Three JS -->
+
+<script src="https://unpkg.com/three@0.165.0/build/three.min.js"></script>
+
+<script src="https://unpkg.com/three@0.165.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- ==================================
+            LOADER
+=================================== -->
+
+<div id="loader">
+
+<div class="loader-content">
+
+<h1 class="logo">
+
+🎂 Birthday Adventure
+
+</h1>
+
+<div class="loader-ring"></div>
+
+<div class="loading-bar">
+
+<div id="progress"></div>
+
+</div>
+
+<p id="loadingText">
+
+Preparing Something Magical...
+
+</p>
+
+</div>
+
+</div>
+
+<!-- ==================================
+      BACKGROUND EFFECTS
+=================================== -->
+
+<div id="stars"></div>
+
+<div id="fireflies"></div>
+
+<div id="particles"></div>
+
+<div id="cursorGlow"></div>
+
+<canvas id="fireworks"></canvas>
+
+<div id="balloons"></div>
+
+<div id="hearts"></div>
+
+<div id="sparkContainer"></div>
+
+<!-- ==================================
+      PASSWORD SCREEN
+=================================== -->
+
+<section id="passwordScene"
+class="scene active">
+
+<div class="glass">
+
+<h1>
+
+🔐 Secret Birthday Portal
+
+</h1>
+
+<p>
+
+Only special people know the password.
+
+</p>
+
+<input
+
+type="password"
+
+id="password"
+
+placeholder="Enter Password">
+
+<button id="passwordBtn">
+
+Unlock
+
+</button>
+
+<p id="passwordError"></p>
+
+</div>
+
+</section>
+
+<!-- ==================================
+      NAME SCREEN
+=================================== -->
+
+<section id="nameScene"
+class="scene">
+
+<div class="glass">
+
+<h1>
+
+👋 Welcome
+
+</h1>
+
+<p>
+
+Before we begin...
+
+Tell me your name.
+
+</p>
+
+<input
+
+type="text"
+
+id="userName"
+
+placeholder="Your Name">
+
+<button id="saveName">
+
+Continue ❤️
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ==================================
+      COUNTDOWN
+=================================== -->
+
+<section id="countdownScene"
+class="scene">
+
+<div class="glass">
+
+<h1 id="countNumber">
+
+3
+
+</h1>
+
+<p>
+
+Get Ready...
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ==================================
+        GIFT SCENE
+=================================== -->
+
+<section id="giftScene"
+class="scene">
+
+<div class="glass">
+
+<h1>
+
+🎁 A Magical Gift
+
+</h1>
+
+<p>
+
+Click the gift to begin your adventure.
+
+</p>
+
+<div id="giftContainer">
+
+<div id="giftGlow"></div>
+
+<div id="gift3D">
+<div class="gift-box"></div>
+<div class="gift-lid"></div>
+<div class="ribbon-v"></div>
+<div class="ribbon-h"></div>
+<div class="bow"></div>
+<div class="magic-light"></div>
+</div>
+
+</div>
+
+<button id="openGift">
+
+Open Gift ✨
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ==================================
+            LETTER SCENE
+=================================== -->
+
+<section id="letterScene" class="scene">
+
+    <div class="glass">
+
+        <h1>💌 A Letter For You</h1>
+
+        <h2 id="greeting"></h2>
+
+        <div id="typed"></div>
+
+        <button id="letterNext">
+            Continue ❤️
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ==================================
+        MEMORY GALLERY
+=================================== -->
+
+<section id="galleryScene" class="scene">
+
+    <div class="glass galleryGlass">
+
+        <h1>📸 Beautiful Memories</h1>
+
+        <p>
+            Every picture tells a beautiful story...
+        </p>
+
+        <div class="gallery">
+
+            <img src="C:\Users\ADMIN\OneDrive\Desktop\birthda\Birthday Adventure Ultimate\assets\photos\photo1.png">
+            <img src="C:\Users\ADMIN\OneDrive\Desktop\birthda\Birthday Adventure Ultimate\assets\photos\photo2.png">
+            <img src="assets/photos/photo3.jpg">
+            <img src="assets/photos/photo4.jpg">
+
+
+        </div>
+
+        <button id="galleryNext">
+
+            Next Surprise 🎂
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ==================================
+        IMAGE VIEWER
+=================================== -->
+
+<div id="viewer">
+
+    <span id="closeViewer">
+
+        ✖
+
+    </span>
+
+    <img id="viewerImage">
+
+</div>
+
+<!-- ==================================
+            CAKE SCENE
+=================================== -->
+
+<section id="cakeScene" class="scene">
+
+    <div class="glass">
+
+        <h1>🎂 Make A Wish</h1>
+
+        <p>
+
+            Close your eyes...
+
+            Make a wish...
+
+            Blow into your microphone.
+
+        </p>
+
+        <div id="cakeContainer">
+
+            <div id="cake3D">
+            <div class="cake-layer layer-bottom"></div>
+            <div class="cake-layer layer-middle"></div>
+            <div class="cake-layer layer-top"></div>
+            <div class="icing"></div>
+            <div class="candle">
+            <div class="flame" id="flame"></div>
+</div>
+</div>
+
+        </div>
+
+        <button id="startMic">
+
+            🎤 Enable Microphone
+
+        </button>
+
+        <h2 id="wishGranted">
+
+            ✨ Wish Granted ✨
+
+        </h2>
+
+        <button id="cakeNext">
+
+            Continue ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ==================================
+        VOICE RECOGNITION
+=================================== -->
+
+<section id="voiceScene" class="scene">
+
+    <div class="glass">
+
+        <h1>
+
+            🎙 One Last Challenge
+
+        </h1>
+
+        <p>
+
+            Say
+
+            <b>Happy Birthday</b>
+
+            to continue.
+
+        </p>
+
+        <button id="startSpeech">
+
+            Start Listening 🎤
+
+        </button>
+
+        <p id="speechStatus">
+
+            Waiting...
+
+        </p>
+
+        <button id="voiceNext">
+
+            Continue 🎉
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ==================================
+        VIDEO SURPRISE
+=================================== -->
+
+<section id="videoScene" class="scene">
+
+    <div class="glass">
+
+        <h1>
+
+            🎥 A Special Surprise
+
+        </h1>
+
+        <video
+            id="birthdayVideo"
+            controls>
+
+            <source
+                src="assets/final.mp4"
+                type="video/mp4">
+
+        </video>
+
+        <button id="videoNext">
+
+            Continue ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ==================================
+        FINAL SCENE
+=================================== -->
+
+<section id="finalScene" class="scene">
+
+    <div class="glass">
+
+        <h1>
+
+            🎉 Happy Birthday 🎉
+
+        </h1>
+
+        <h2 id="finalName"></h2>
+
+        <p id="finalMessage">
+
+            May every dream become reality.
+
+            May every smile stay forever.
+
+            Stay blessed.
+
+            Stay happy.
+
+            Stay amazing.
+
+        </p>
+
+        <div class="secretBox">
+
+            <input
+                type="password"
+                id="secretPassword"
+                placeholder="Final Secret Password">
+
+            <button id="unlockGift">
+
+                Unlock Final Gift
+
+            </button>
+
+        </div>
+
+        <div id="vault">
+
+            <div id="vaultGift"></div>
+
+            <h2 id="secretText">
+
+                ❤️ You are the greatest gift in this world. ❤️
+
+            </h2>
+
+        </div>
+
+        <button id="restart">
+
+            🔄 Restart Adventure
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ==================================
+        ENDING SCREEN
+=================================== -->
+
+<section id="endingScene" class="scene">
+
+    <div class="glass">
+
+        <h1 id="endingTitle">
+
+            ✨ THE END ✨
+
+        </h1>
+
+        <h2>
+
+            Thank You ❤️
+
+        </h2>
+
+        <p id="endingMessage">
+
+            Every year with you
+
+            is another beautiful adventure.
+
+        </p>
+
+        <h3>
+
+            Made with ❤️ by
+
+            Shreyas
+
+        </h3>
+
+    </div>
+
+</section>
+
+<!-- ==================================
+            AUDIO
+=================================== -->
+
+<audio id="bgMusic" loop>
+
+    <source
+        src="assets/music.mp3"
+        type="audio/mpeg">
+
+</audio>
+
+<audio id="voiceAudio">
+
+    <source
+        src="assets/voice.mp3"
+        type="audio/mpeg">
+
+</audio>
+
+<audio id="giftSound">
+
+    <source
+        src="assets/gift-open.mp3"
+        type="audio/mpeg">
+
+</audio>
+
+<audio id="unlockSound">
+
+    <source
+        src="assets/unlock.mp3"
+        type="audio/mpeg">
+
+</audio>
+
+<audio id="popSound">
+
+    <source
+        src="assets/pop.mp3"
+        type="audio/mpeg">
+
+</audio>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
