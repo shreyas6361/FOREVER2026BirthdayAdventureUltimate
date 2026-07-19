@@ -1714,7 +1714,7 @@ if(unlockGift){
 
 unlockGift.onclick = ()=>{
 
-    const code = secretPassword.value.trim().toUpperCase();
+    const code = secretPassword.value.trim();
 
     if(code === SECRET_CODE){
 
