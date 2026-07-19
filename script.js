@@ -1704,7 +1704,7 @@ const vault = document.getElementById("vault");
 
 const restartBtn = document.getElementById("restart");
 
-const SECRET_CODE = "FOREVER2026";
+const SECRET_CODE = "sam1234";
 
 /* ==========================================
         UNLOCK SECRET
