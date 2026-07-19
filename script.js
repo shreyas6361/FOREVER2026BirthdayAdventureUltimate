@@ -54,7 +54,7 @@ const voiceAudio = document.getElementById("voiceAudio");
             SETTINGS
 ========================================== */
 
-const PASSWORD = "Princess2026";
+const PASSWORD = "sam";
 
 let userName = "";
 
