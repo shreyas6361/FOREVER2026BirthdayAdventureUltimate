@@ -4845,3 +4845,40 @@ grid-template-columns:1fr;
 
 
 }
+/* ==================================
+        VIDEO SURPRISE
+=================================== */
+
+#videoScene .glass{
+
+    max-width:420px;
+    padding:30px;
+
+}
+
+#birthdayVideo{
+
+    width:100%;
+    max-width:320px;
+
+    height:560px;
+
+    object-fit:contain;
+
+    border-radius:18px;
+
+    background:#000;
+
+    margin:20px auto;
+
+    display:block;
+
+    box-shadow:0 0 25px rgba(255,105,180,.35);
+
+}
+
+#videoNext{
+
+    margin-top:20px;
+
+}
