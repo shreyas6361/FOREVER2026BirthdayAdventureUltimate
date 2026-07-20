@@ -209,15 +209,42 @@ filter:hue-rotate(180deg);
 
 
 .scene{
-    width:100%;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:40px 20px;
-    overflow-y:auto;
-    overflow-x:hidden;
+
+
+position:absolute;
+
+
+inset:0;
+
+
+display:flex;
+
+
+justify-content:center;
+
+
+align-items:center;
+
+
+padding:25px;
+
+
+
+visibility:hidden;
+
+
+opacity:0;
+
+
+
+transition:1s;
+
+
+
 }
+
+
+
 .scene.active{
 
 
@@ -4869,14 +4896,4 @@ grid-template-columns:1fr;
 
     overflow-x:hidden;
 
-}
-#finalScene,
-#endingScene{
-    overflow-y:auto;
-}
-
-#finalScene .glass,
-#endingScene .glass{
-    max-height:90vh;
-    overflow-y:auto;
 }
