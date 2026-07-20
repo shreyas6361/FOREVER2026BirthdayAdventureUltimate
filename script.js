@@ -1191,10 +1191,13 @@ async function startMicrophone(){
         });
 
         audioContext = new AudioContext();
+        if(audioContext.state === "suspended"){
+            await audioContext.resume();
+        }
 
         analyser = audioContext.createAnalyser();
 
-        analyser.fftSize = 256;
+        analyser.fftSize = 2048;
 
         microphone = audioContext.createMediaStreamSource(stream);
 
@@ -1226,24 +1229,26 @@ async function startMicrophone(){
 /* ==========================================
             DETECT BLOW
 ========================================== */
-
 function detectBlow(){
 
     if(!micListening) return;
 
-    analyser.getByteFrequencyData(dataArray);
+    analyser.getByteTimeDomainData(dataArray);
 
-    let volume = 0;
+    let sum = 0;
 
-    for(let i=0;i<dataArray.length;i++){
+    for(let i = 0; i < dataArray.length; i++){
 
-        volume += dataArray[i];
+        const value = (dataArray[i] - 128) / 128;
+
+        sum += value * value;
 
     }
 
-    volume /= dataArray.length;
+    const volume = Math.sqrt(sum / dataArray.length);
 
-    if(volume > 65){
+    // Lower threshold for mobile devices
+    if(volume > 0.08){
 
         blowOutCandle();
 
@@ -1256,7 +1261,6 @@ function detectBlow(){
     requestAnimationFrame(detectBlow);
 
 }
-
 /* ==========================================
         BLOW OUT CANDLE
 ========================================== */
