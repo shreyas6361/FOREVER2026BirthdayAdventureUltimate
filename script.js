@@ -2276,3 +2276,425 @@ console.log(
 "🎂 Birthday Adventure Ultimate Loaded Successfully ❤️"
 
 );
+/* =====================================================
+                SCRIPT.JS
+                  PART 3H
+        FINAL POLISH • RESTART
+=====================================================*/
+
+/* ==========================================
+        SHOOTING STARS
+========================================== */
+
+
+function createShootingStar(){
+
+    const star=document.createElement("div");
+
+    star.className="shootingStar";
+
+    star.style.left=
+    Math.random()*100+"vw";
+
+    star.style.top=
+    Math.random()*50+"vh";
+
+    star.style.animationDuration=
+    (Math.random()*2+2)+"s";
+
+    document.body.appendChild(star);
+
+    setTimeout(()=>{
+
+        star.remove();
+
+    },4000);
+
+}
+
+
+setInterval(createShootingStar,1500);
+
+/* ==========================================
+        GALAXY PARTICLES
+========================================== */
+
+
+function createGalaxyParticle(){
+
+    const particle=document.createElement("div");
+
+    particle.className="galaxyParticle";
+
+    particle.style.left=
+    Math.random()*100+"vw";
+
+    particle.style.top=
+    Math.random()*100+"vh";
+
+    particle.style.animationDuration=
+    (Math.random()*5+5)+"s";
+
+    document.body.appendChild(particle);
+
+    setTimeout(()=>{
+
+        particle.remove();
+
+    },10000);
+
+}
+
+
+setInterval(createGalaxyParticle,500);
+
+/* ==========================================
+        MUSIC FADE CONTROL
+========================================== */
+
+
+function fadeMusic(volume,target){
+
+let current=volume;
+
+const fade=setInterval(()=>{
+
+if(current < target){
+
+current+=0.02;
+
+}
+
+else{
+
+current-=0.02;
+
+}
+
+bgMusic.volume=
+Math.max(
+0,
+Math.min(1,current)
+);
+
+if(Math.abs(current-target)<0.03){
+
+clearInterval(fade);
+
+bgMusic.volume=target;
+
+}
+
+},100);
+
+}
+
+document.addEventListener(
+"visibilitychange",
+()=>{
+
+if(document.hidden){
+
+bgMusic.volume=.05;
+
+}
+
+else{
+
+bgMusic.volume=.35;
+
+}
+
+});
+
+/* ==========================================
+        BUTTON CLICK EFFECT
+========================================== */
+
+
+document.querySelectorAll("button")
+.forEach(btn=>{
+
+btn.addEventListener(
+"click",
+()=>{
+
+gsap.fromTo(
+
+btn,
+
+{
+
+scale:1
+
+},
+
+{
+
+scale:1.15,
+
+duration:.15,
+
+yoyo:true,
+
+repeat:1
+
+}
+
+);
+
+});
+
+});
+
+/* ==========================================
+        MOBILE OPTIMIZATION
+========================================== */
+
+
+function mobileOptimize(){
+
+if(window.innerWidth<600){
+
+document.body.classList.add(
+"mobile"
+);
+
+}
+
+}
+
+mobileOptimize();
+
+window.addEventListener(
+
+"resize",
+
+mobileOptimize
+
+);
+
+/* ==========================================
+        SHOOTING STAR CSS
+========================================== */
+
+// Add shooting star styles dynamically
+const styleSheet = document.createElement("style");
+styleSheet.textContent = `
+    .shootingStar {
+        position: fixed;
+        width: 3px;
+        height: 3px;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 0 10px white;
+        animation: shootingStar linear forwards;
+        z-index: 9998;
+        pointer-events: none;
+    }
+    
+    @keyframes shootingStar {
+        0% {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(200px, 200px);
+            opacity: 0;
+        }
+    }
+    
+    .galaxyParticle {
+        position: fixed;
+        width: 4px;
+        height: 4px;
+        background: radial-gradient(circle, rgba(255,255,255,0.8), transparent);
+        border-radius: 50%;
+        animation: galaxyFloat linear forwards;
+        z-index: -2;
+        pointer-events: none;
+    }
+    
+    @keyframes galaxyFloat {
+        0% {
+            transform: scale(0);
+            opacity: 0.8;
+        }
+        50% {
+            transform: scale(1.5);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(0);
+            opacity: 0;
+        }
+    }
+    
+    .petal {
+        position: fixed;
+        bottom: -50px;
+        pointer-events: none;
+        animation: petalFall linear forwards;
+        z-index: 9997;
+    }
+    
+    @keyframes petalFall {
+        0% {
+            transform: translateY(0) rotate(0deg) scale(0.5);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-120vh) rotate(720deg) scale(1);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(styleSheet);
+
+/* ==========================================
+        PROJECT COMPLETE
+========================================== */
+
+
+console.log(
+
+"🎂 Birthday Adventure Ultimate Loaded Successfully ❤️"
+
+);
+
+// ==========================================
+//        CUSTOM SCROLLBAR FUNCTIONALITY
+// ==========================================
+
+function initCustomScrollbar() {
+    const scrollContainer = document.getElementById('letterScroll');
+    const scrollThumb = document.getElementById('scrollThumb');
+    
+    if (!scrollContainer || !scrollThumb) return;
+    
+    const track = scrollThumb.parentElement;
+    
+    function updateThumb() {
+        const scrollHeight = scrollContainer.scrollHeight;
+        const clientHeight = scrollContainer.clientHeight;
+        const scrollTop = scrollContainer.scrollTop;
+        
+        if (scrollHeight <= clientHeight) {
+            scrollThumb.style.display = 'none';
+            return;
+        }
+        
+        scrollThumb.style.display = 'block';
+        const thumbHeight = Math.max(30, (clientHeight / scrollHeight) * clientHeight);
+        const maxThumbTop = clientHeight - thumbHeight;
+        const thumbTop = (scrollTop / (scrollHeight - clientHeight)) * maxThumbTop;
+        
+        scrollThumb.style.height = thumbHeight + 'px';
+        scrollThumb.style.top = thumbTop + 'px';
+    }
+    
+    // Update on scroll
+    scrollContainer.addEventListener('scroll', updateThumb);
+    
+    // Update on resize
+    window.addEventListener('resize', updateThumb);
+    
+    // Update after content loads
+    setTimeout(updateThumb, 100);
+    
+    // Drag functionality
+    let isDragging = false;
+    let startY = 0;
+    let startTop = 0;
+    
+    scrollThumb.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startY = e.clientY;
+        startTop = parseFloat(scrollThumb.style.top) || 0;
+        document.body.style.userSelect = 'none';
+        scrollThumb.style.background = 'linear-gradient(180deg, #ffd93d, #ff6b6b)';
+    });
+    
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        
+        const deltaY = e.clientY - startY;
+        const trackRect = track.getBoundingClientRect();
+        const trackHeight = trackRect.height;
+        const thumbHeight = parseFloat(scrollThumb.style.height) || 30;
+        const maxTop = trackHeight - thumbHeight;
+        
+        let newTop = Math.max(0, Math.min(maxTop, startTop + deltaY));
+        scrollThumb.style.top = newTop + 'px';
+        
+        // Update scroll position
+        const scrollHeight = scrollContainer.scrollHeight;
+        const clientHeight = scrollContainer.clientHeight;
+        const scrollRatio = newTop / maxTop;
+        scrollContainer.scrollTop = scrollRatio * (scrollHeight - clientHeight);
+    });
+    
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            document.body.style.userSelect = '';
+            scrollThumb.style.background = 'linear-gradient(180deg, #ff6b6b, #ffd93d)';
+        }
+    });
+    
+    // Touch support for mobile
+    let touchStartY = 0;
+    let touchStartTop = 0;
+    
+    scrollThumb.addEventListener('touchstart', (e) => {
+        const touch = e.touches[0];
+        touchStartY = touch.clientY;
+        touchStartTop = parseFloat(scrollThumb.style.top) || 0;
+    });
+    
+    scrollThumb.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        const deltaY = touch.clientY - touchStartY;
+        const trackRect = track.getBoundingClientRect();
+        const trackHeight = trackRect.height;
+        const thumbHeight = parseFloat(scrollThumb.style.height) || 30;
+        const maxTop = trackHeight - thumbHeight;
+        
+        let newTop = Math.max(0, Math.min(maxTop, touchStartTop + deltaY));
+        scrollThumb.style.top = newTop + 'px';
+        
+        const scrollHeight = scrollContainer.scrollHeight;
+        const clientHeight = scrollContainer.clientHeight;
+        const scrollRatio = newTop / maxTop;
+        scrollContainer.scrollTop = scrollRatio * (scrollHeight - clientHeight);
+    });
+    
+    // Initial update
+    updateThumb();
+    
+    // Update when typing animation changes content
+    const observer = new MutationObserver(() => {
+        updateThumb();
+    });
+    
+    observer.observe(scrollContainer, {
+        childList: true,
+        subtree: true,
+        characterData: true
+    });
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', initCustomScrollbar);
+
+// Also initialize when letter scene becomes active
+const letterSceneObserver = new MutationObserver(() => {
+    if (document.getElementById('letterScene').classList.contains('active')) {
+        setTimeout(initCustomScrollbar, 500);
+    }
+});
+
+letterSceneObserver.observe(document.getElementById('letterScene'), {
+    attributes: true,
+    attributeFilter: ['class']
+});

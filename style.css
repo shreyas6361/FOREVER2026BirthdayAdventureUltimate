@@ -4845,3 +4845,135 @@ grid-template-columns:1fr;
 
 
 }
+/* ==========================================
+        LETTER WITH CUSTOM SLIDER
+========================================== */
+
+.letter-wrapper {
+    position: relative;
+    width: 100%;
+    max-height: 350px;
+    margin: 15px 0;
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.letter-scroll {
+    flex: 1;
+    max-height: 350px;
+    overflow-y: scroll;
+    padding: 20px 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* Hide default scrollbar */
+.letter-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.letter-inner {
+    min-height: 100%;
+    color: #fff;
+}
+
+.letter-inner #greeting {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #ffd93d;
+    text-align: center;
+}
+
+.letter-inner #typed {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #e0e0e0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar {
+    width: 8px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: stretch;
+}
+
+.scroll-track {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(180deg, #ff6b6b, #ffd93d);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    min-height: 30px;
+}
+
+.scroll-thumb:hover {
+    background: linear-gradient(180deg, #ffd93d, #ff6b6b);
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .letter-wrapper {
+        max-height: 280px;
+    }
+    
+    .letter-scroll {
+        max-height: 280px;
+        padding: 15px 18px;
+    }
+    
+    .letter-inner #greeting {
+        font-size: 1.1rem;
+    }
+    
+    .letter-inner #typed {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    .custom-scrollbar {
+        width: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .letter-wrapper {
+        max-height: 220px;
+    }
+    
+    .letter-scroll {
+        max-height: 220px;
+        padding: 12px 15px;
+    }
+    
+    .letter-inner #greeting {
+        font-size: 1rem;
+    }
+    
+    .letter-inner #typed {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    
+    .custom-scrollbar {
+        width: 5px;
+    }
+}
