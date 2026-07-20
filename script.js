@@ -126,7 +126,8 @@ const passwordError = document.getElementById("passwordError");
 
 passwordBtn.onclick = ()=>{
 
-    if(passwordInput.value === PASSWORD){
+    // Make password case-insensitive by converting both to lowercase
+    if(passwordInput.value.trim().toLowerCase() === PASSWORD.toLowerCase()){
 
         unlockSound.play();
 
